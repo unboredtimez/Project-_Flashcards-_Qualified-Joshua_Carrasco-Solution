@@ -1,11 +1,16 @@
-import React from "react";
-import { useState, Route, Switch, Link } from "react-router-dom";
+import React, {useState} from "react";
+import { Route, Switch, Link } from "react-router-dom";
 
+import { listDecks } from "../utils/api";
 import Header from "./Header";
 import DeckList from "../Home/DeckList";
 import NotFound from "./NotFound";
 
 function Layout() {
+  const [decks, setDecks] = useState(listDecks())
+
+  console.log(decks)
+  
   return (
     <>
       <Header />
@@ -15,14 +20,14 @@ function Layout() {
             <Route exact path="/">
               <DeckList />
             </Route>
-            <Route path="/decks/:deckId">
-              {/* TODO: Implement Deck, where you can see all info about a Deck */}
+            <Route exact path="/decks/new">
+              {<p>Create new Deck page</p>}
             </Route>
-            <Route path="/decks/:deckId/study">
-              {/* TODO: Implement Study, where you can view cards in Deck to study */}
+            <Route exact path="/decks/:deckId">
+              {<p>Deck ID Page</p>}
             </Route>
-            <Route path="/decks/new">
-              {/* TODO: Implement Create New deck */}
+            <Route exact path="/decks/:deckId/study">
+              {<p>deck ID study page</p>}
             </Route>
             <Route>
               <NotFound />
