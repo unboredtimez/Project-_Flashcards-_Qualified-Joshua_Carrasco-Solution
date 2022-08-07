@@ -5,9 +5,11 @@ import { listDecks } from "../utils/api";
 import Header from "./Header";
 import DeckList from "../Home/DeckList";
 import NotFound from "./NotFound";
+import CreateDeck from "../CreateDeck/CreateDeck";
+import DeckPage from "../DeckPage/DeckPage";
 
 function Layout() {
-  const [decks, setDecks] = useState(listDecks())
+  const [decks, setDecks] = useState([])
 
   console.log(decks)
   
@@ -21,10 +23,10 @@ function Layout() {
               <DeckList />
             </Route>
             <Route exact path="/decks/new">
-              {<p>Create new Deck page</p>}
+              <CreateDeck />
             </Route>
             <Route exact path="/decks/:deckId">
-              {<p>Deck ID Page</p>}
+              <DeckPage />
             </Route>
             <Route exact path="/decks/:deckId/study">
               {<p>deck ID study page</p>}
