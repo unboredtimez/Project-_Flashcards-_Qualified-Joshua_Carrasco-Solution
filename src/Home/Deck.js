@@ -7,11 +7,11 @@ function Deck() {
     const [decks, setDecks] = useState([])
 
     useEffect(() => {
-        async function loadDecks() {
-            const result = await listDecks()
-            setDecks(result)
-        }
-        loadDecks()
+      async function loadDecks() {
+          const result = await listDecks()
+          setDecks(result)
+      }
+      loadDecks()
     },[decks.length])
 
     const handleDelete=(deckId) => {

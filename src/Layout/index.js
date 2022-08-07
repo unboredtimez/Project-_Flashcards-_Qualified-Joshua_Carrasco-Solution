@@ -1,18 +1,16 @@
-import React, {useState} from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 
-import { listDecks } from "../utils/api";
 import Header from "./Header";
 import DeckList from "../Home/DeckList";
 import NotFound from "./NotFound";
 import CreateDeck from "../CreateDeck/CreateDeck";
 import DeckPage from "../DeckPage/DeckPage";
+import AddCard from "../AddCard/AddCard";
+import EditCard from "../EditCard/EditCard";
 
 function Layout() {
-  const [decks, setDecks] = useState([])
 
-  console.log(decks)
-  
   return (
     <>
       <Header />
@@ -28,16 +26,23 @@ function Layout() {
             <Route exact path="/decks/:deckId">
               <DeckPage />
             </Route>
+            <Route exact path="/decks/:deckId/edit">
+              <p>Deck Edit Page</p>
+            </Route>
+            <Route exact path="/decks/:deckId/cards/new">
+              <AddCard />
+            </Route>
+            <Route exact path="/decks/:deckId/cards/:cardId/edit">
+              <EditCard />
+            </Route>
             <Route exact path="/decks/:deckId/study">
               {<p>deck ID study page</p>}
             </Route>
             <Route>
               <NotFound />
             </Route>
-          </Switch>
-          
+          </Switch> 
         }
-        
       </div>
     </>
   );
