@@ -38,7 +38,7 @@ function EditCard() {
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to="/"><HomeFillIcon size={22} fill="#007BFC" /> Home</Link></li>
                     <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">Edit card {cardId}</li>
+                    <li className="breadcrumb-item active" aria-current="page">Edit Card {cardId}</li>
                 </ol>
             </nav>
 

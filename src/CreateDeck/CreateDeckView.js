@@ -1,45 +1,28 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
-import { createDeck } from "../utils/api"
+import React from "react"
 
-function CreateDeckView() {
-    const history = useHistory()
+// Refactored CreateDeckView to be used by both the CreateDeck and EditDeck components
+function CreateDeckView({ formData, setFormData }) {
 
-    const initialFormState = {
-        name: "",
-        description: "",
-    }
-
-    const [formData, setFormData] = useState({ ...initialFormState })
-
-    const handleChange = ({ target }) => {
+    // Delcaring my change handler function
+    const changeHandler = ({ target }) => {
         setFormData({
             ...formData,
             [target.name]: target.value
         })
     }
     
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        createDeck(formData)
-        .then((results) => {
-            history.push(`/decks/${results.id}`) 
-        })
-    }
-
+    // Below return has the form for the Edit/Create Deck views
     return (
         <>
-            <form name="createDeck" onSubmit={handleSubmit}>
+            <form>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
-                    <input name="name" type="name" className="form-control" required onChange={handleChange} value={formData.name} placeholder="Deck Name"/>
+                    <input name="name" type="name" className="form-control" placeholder="Deck Name" required onChange={changeHandler} value={formData.name}  />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <textarea name="description" type="description" className="form-control" placeholder="Brief description of the deck" required onChange={handleChange} value={formData.description} />
+                    <textarea name="description" type="description" className="form-control" placeholder="Brief description of the deck" required onChange={changeHandler} value={formData.description} />
                 </div>
-                <button type="cancel" className="btn btn-secondary" style={{marginRight: "10px"}} onClick={() => history.push("/")}>Cancel</button>
-                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
 
         </>

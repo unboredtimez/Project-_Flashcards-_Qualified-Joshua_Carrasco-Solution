@@ -6,35 +6,39 @@ import CardForm from "./CardForm"
 
 function AddCard() {
 
+    // Declaring the deck state
     const [deck, setDeck] = useState({})
-    const [cards, setCards] = useState([])
 
+    // Declaring a blank initial form state
     const initialFormState = {
         front: "",
         back: "",
     }
     
+    // Declaring form data using the initial form state as well as declaring some basic variables
     const [formData, setFormData] = useState({ ...initialFormState })
     const params = useParams()
     const history = useHistory()
     const deckId = params.deckId
 
+    // Whenever deck ID changes re-read the deck and Set Deck state based on results
     useEffect(() => {
         async function loadDeck() {
             const response = await readDeck(deckId)
             setDeck(response)
-            setCards(response.cards)
         }
 
         loadDeck()
     },[deckId])
 
+    // Declaring save handler to create new card and reset form data
     const handleSaveCard = (event) => {
         event.preventDefault()
         createCard(deckId, formData)
         setFormData(initialFormState)
     }
 
+    // Below return has Add card page
     return (
         <>
             <nav aria-label="breadcrumb">

@@ -11,9 +11,14 @@
       "id": 2
     },
     {
-      "name": "test",
-      "description": "test",
+      "name": "test - edited deck test",
+      "description": "test - edited description of deck",
       "id": 3
+    },
+    {
+      "name": "new deck",
+      "description": "new deck",
+      "id": 4
     }
   ],
   "cards": [
@@ -55,8 +60,8 @@
       "id": 7
     },
     {
-      "front": "test edit commented saved",
-      "back": "test edit commented saved",
+      "front": "test edit commented saved test",
+      "back": "test edit commented saved test",
       "deckId": 3,
       "id": 8
     },
@@ -71,6 +76,12 @@
       "back": "test5 edit",
       "deckId": 3,
       "id": 11
+    },
+    {
+      "front": "test",
+      "back": "test",
+      "deckId": 4,
+      "id": 12
     }
   ]
 }

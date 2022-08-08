@@ -1,10 +1,27 @@
-import React from "react"
+import React, { useState } from "react"
 import { HomeFillIcon } from "@primer/octicons-react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import CreateDeckView from "./CreateDeckView"
+import { createDeck } from "../utils/api"
 
 function CreateDeck() {
+    const history = useHistory()
 
+    const initialFormState = {
+        name: "",
+        description: "",
+    }
+    const [formData, setFormData] = useState({ ...initialFormState })
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        createDeck(formData)
+        .then((results) => {
+            history.push(`/decks/${results.id}`) 
+        })
+    }
+
+ 
 
     return (
         <>
@@ -15,7 +32,11 @@ function CreateDeck() {
                 </ol>
             </nav>
             <h1>Create Deck</h1>
-            <CreateDeckView />
+
+            <CreateDeckView formData={formData} setFormData={setFormData} />
+
+            <button type="cancel" className="btn btn-secondary" style={{marginRight: "10px"}} onClick={() => history.push("/")}>Cancel</button>
+            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
         </>
 
     )

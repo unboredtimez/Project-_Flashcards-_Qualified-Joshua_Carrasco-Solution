@@ -21,7 +21,7 @@ function DeckPage() {
         }
         loadDecks()
         return () => abortController.abort()
-    }, [deckId, deckId,cards.length])
+    }, [deckId])
 
     const handleDeleteDeck = (deckId) => {
         if (window.confirm("Are you sure you want to delete this deck?")) {
