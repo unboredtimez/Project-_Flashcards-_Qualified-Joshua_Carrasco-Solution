@@ -9,6 +9,7 @@ import DeckPage from "../DeckPage/DeckPage";
 import AddCard from "../AddCard/AddCard";
 import EditCard from "../EditCard/EditCard";
 import EditDeck from "../EditDeck/EditDeck";
+import Study from "../Study/Study";
 
 function Layout() {
 
@@ -16,7 +17,7 @@ function Layout() {
     <>
       <Header />
       <div className="container">
-        {/* TODO: Implement the screen starting here */
+        {
           <Switch>
             <Route exact path="/">
               <DeckList />
@@ -37,7 +38,7 @@ function Layout() {
               <EditCard />
             </Route>
             <Route exact path="/decks/:deckId/study">
-              {<p>deck ID study page</p>}
+              <Study />
             </Route>
             <Route>
               <NotFound />

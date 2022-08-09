@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link, useParams, useHistory } from "react-router-dom"
 import { createCard, readDeck } from "../utils/api"
-import { HomeFillIcon } from "@primer/octicons-react"
 import CardForm from "./CardForm"
 
 function AddCard() {
@@ -43,7 +42,7 @@ function AddCard() {
         <>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="/"><HomeFillIcon size={22} fill="#007BFC" /> Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Add Card</li>
                 </ol>

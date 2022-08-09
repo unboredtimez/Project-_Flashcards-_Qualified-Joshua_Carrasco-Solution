@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { TrashIcon, BookIcon, EyeIcon } from "@primer/octicons-react"
 import { deleteDeck, listDecks } from "../utils/api"
 
+// This is a component used by the DeckList page
 function Deck() {
+    // Declaring my deck state
     const [decks, setDecks] = useState([])
 
+    // Any time the number of decks changes the deck state will update accordingly
     useEffect(() => {
       async function loadDecks() {
           const result = await listDecks()
@@ -14,6 +16,7 @@ function Deck() {
       loadDecks()
     },[decks.length])
 
+    // This is my delete handler, it is used to delete decks
     const handleDelete=(deckId) => {
         if (window.confirm("Are you sure you want to delete this deck?")) {
             deleteDeck(deckId)
@@ -21,6 +24,7 @@ function Deck() {
         }
     }
 
+   // The return below will generate all the deck on the deck list. 
    return (
     <>
         {decks.map((deck, index) => {
@@ -36,9 +40,9 @@ function Deck() {
                             </div>
                         </div>
                         <p className="card-text">{deck.description}</p>
-                        <Link to={`/decks/${deck.id}`} className="btn btn-secondary" style={{marginRight: "10px"}}><EyeIcon size={20} /> View</Link>
-                        <Link to={`/decks/${deck.id}/study`} className="btn btn-primary" style={{marginRight: "10px"}}><BookIcon size={20} /> Study</Link>
-                        <button onClick={() => handleDelete(deck.id)} name="delete" className="btn btn-danger float-right" type="button"><TrashIcon size={20} /> Delete</button>
+                        <Link to={`/decks/${deck.id}`} className="btn btn-secondary" style={{marginRight: "10px"}}>View</Link>
+                        <Link to={`/decks/${deck.id}/study`} className="btn btn-primary" style={{marginRight: "10px"}}>Study</Link>
+                        <button onClick={() => handleDelete(deck.id)} name="delete" className="btn btn-danger float-right" type="button">Delete</button>
                     </div>
                 </div>
             )

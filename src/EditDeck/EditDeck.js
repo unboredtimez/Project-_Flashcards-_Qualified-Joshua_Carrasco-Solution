@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useHistory } from "react-router-dom"
 import { readDeck, updateDeck } from "../utils/api";
-import { HomeFillIcon } from "@primer/octicons-react"
 import CreateDeckView from "../CreateDeck/CreateDeckView";
 
 function EditDeck() {
@@ -51,7 +50,7 @@ function EditDeck() {
         <>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="/"><HomeFillIcon size={22} fill="#007BFC" /> Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{formData.name}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Edit Deck</li>
                 </ol>

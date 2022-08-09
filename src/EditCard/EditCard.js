@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom"
 import { updateCard, readCard, readDeck } from "../utils/api";
-import { HomeFillIcon } from "@primer/octicons-react";
 import CardForm from "../AddCard/CardForm";
 
 function EditCard() {
 
+    // Declaring my deck state
     const [deck, setDeck] = useState({})
+
+    // Declaring my form state
     const [formData, setFormData] = useState({})
+
+    // Decalring variable for params function
     const params = useParams()
+
+    // Setting deckId param to a variable
     const deckId = params.deckId
+
+    // Setting cardId param to a variable
     const cardId = params.cardId
+
     const history = useHistory()
 
+    // Anytime the deck ID or card ID changes the deck and card data will be re-read from DB
     useEffect(() => {
         const abortController = new AbortController()
 
@@ -26,17 +36,19 @@ function EditCard() {
         return () => abortController.abort()
     }, [deckId, cardId])
 
+    // Declaring my submit handler function to update the card state and push user to /deck/{deckId}
     const submitHandler = (event) => {
         event.preventDefault()
         updateCard(formData)
         history.push(`/decks/${deckId}`)
     }
 
+    // The return below constructs the Edit Card page
     return (
         <>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to="/"><HomeFillIcon size={22} fill="#007BFC" /> Home</Link></li>
+                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">Edit Card {cardId}</li>
                 </ol>
